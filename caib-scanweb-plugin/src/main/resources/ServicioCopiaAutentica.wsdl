@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="CopiaAutenticaWSServiceService" targetNamespace="http://service.ws.digital.caib.es/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ws.digital.caib.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://service.ws.digital.caib.es/" version="1.0" xmlns:tns="http://service.ws.digital.caib.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="conformarCopiaAutentica" type="tns:conformarCopiaAutentica" />
+<xs:element name="conformarCopiaAutenticaResponse" type="tns:conformarCopiaAutenticaResponse" />
+<xs:element name="firmaElectronica" type="tns:firmaElectronica" />
+<xs:element name="generarCopiaAutentica" type="tns:generarCopiaAutentica" />
+<xs:element name="generarCopiaAutenticaDigitalizacion" type="tns:generarCopiaAutenticaDigitalizacion" />
+<xs:element name="generarCopiaAutenticaDigitalizacionResponse" type="tns:generarCopiaAutenticaDigitalizacionResponse" />
+<xs:element name="generarCopiaAutenticaResponse" type="tns:generarCopiaAutenticaResponse" />
+<xs:element name="generarCopiaCompulsaTemporal" type="tns:generarCopiaCompulsaTemporal" />
+<xs:element name="generarCopiaCompulsaTemporalResponse" type="tns:generarCopiaCompulsaTemporalResponse" />
+<xs:element name="generarCopiaSimpleTemporal" type="tns:generarCopiaSimpleTemporal" />
+<xs:element name="generarCopiaSimpleTemporalResponse" type="tns:generarCopiaSimpleTemporalResponse" />
+<xs:element name="generarCopiaTemporal" type="tns:generarCopiaTemporal" />
+<xs:element name="generarCopiaTemporalDigitalizacion" type="tns:generarCopiaTemporalDigitalizacion" />
+<xs:element name="generarCopiaTemporalDigitalizacionResponse" type="tns:generarCopiaTemporalDigitalizacionResponse" />
+<xs:element name="generarCopiaTemporalResponse" type="tns:generarCopiaTemporalResponse" />
+<xs:element name="metadatosDocumentoElectronico" type="tns:metadatosDocumentoElectronico" />
+<xs:element name="obtenerCopiaAutentica" type="tns:obtenerCopiaAutentica" />
+<xs:element name="obtenerCopiaAutenticaResponse" type="tns:obtenerCopiaAutenticaResponse" />
+<xs:element name="obtenerCopiaTemporal" type="tns:obtenerCopiaTemporal" />
+<xs:element name="obtenerCopiaTemporalResponse" type="tns:obtenerCopiaTemporalResponse" />
+<xs:complexType name="generarCopiaTemporal">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="documentoElectronico">
+<xs:complexContent>
+<xs:extension base="tns:baseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="datos" type="tns:datosDocumento" />
+<xs:element minOccurs="0" name="firma" type="tns:firmaElectronica" />
+<xs:element minOccurs="0" name="metadatos" type="tns:metadatosDocumentoElectronico" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="baseVO">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="datosDocumento">
+<xs:complexContent>
+<xs:extension base="tns:baseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="datos" type="xs:base64Binary" />
+<xs:element minOccurs="0" name="encodedHexString" type="xs:string" />
+<xs:element minOccurs="0" name="extension" type="xs:string" />
+<xs:element minOccurs="0" name="nombre" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="firmaElectronica">
+<xs:complexContent>
+<xs:extension base="tns:baseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="bytesFirma" type="xs:base64Binary" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="metadatosDocumentoElectronico">
+<xs:complexContent>
+<xs:extension base="tns:baseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="CSV" type="xs:string" />
+<xs:element minOccurs="0" name="eniMetadata" type="tns:eniMetadata" />
+<xs:element minOccurs="0" name="fechaCaducidad" type="xs:dateTime" />
+<xs:element minOccurs="0" name="informacionDocumento" type="tns:informacionDocumento" />
+<xs:element minOccurs="0" name="isCarpeta" type="xs:boolean" />
+<xs:element name="labelMetadatosComplementarios">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="metadatosComplementarios">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="metadatosFirmaDocOriginal" type="tns:metadatosFirmaElectronica" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="metadatosFirmas" nillable="true" type="tns:metadatosFirmaElectronica" />
+<xs:element minOccurs="0" name="nombreFormato" type="xs:string" />
+<xs:element minOccurs="0" name="tipoDocumentoCAIB" type="xs:string" />
+<xs:element minOccurs="0" name="usuario" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniMetadata">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="estadoElaboracion" type="tns:eniEstadoElaboracion" />
+<xs:element minOccurs="0" name="fechaCaptura" type="xs:dateTime" />
+<xs:element minOccurs="0" name="identificador" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="organo" nillable="true" type="xs:string" />
+<xs:element minOccurs="0" name="origenCiudadanoAdministracion" type="tns:eniEnumOrigenCreacion" />
+<xs:element minOccurs="0" name="tipoDocumental" type="tns:eniEnumTipoDocumental" />
+<xs:element minOccurs="0" name="versionNTI" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniBaseVO">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="eniEstadoElaboracion">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="identificadorDocumentoOrigen" type="xs:string" />
+<xs:element minOccurs="0" name="valorEstadoElaboracion" type="tns:eniEnumEstadoElaboracion" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="informacionDocumento">
+<xs:complexContent>
+<xs:extension base="tns:baseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="idDocGestorDocumental" type="xs:string" />
+<xs:element minOccurs="0" name="idDocTemporal" type="xs:string" />
+<xs:element minOccurs="0" name="idEntidad" type="xs:string" />
+<xs:element minOccurs="0" name="idTipoFormatoDocEntrada" type="xs:string" />
+<xs:element minOccurs="0" name="urlDocumento" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="metadatosFirmaElectronica">
+<xs:complexContent>
+<xs:extension base="tns:eniFirma">
+<xs:sequence>
+<xs:element minOccurs="0" name="accionFirmanteSobreDocumento" type="xs:string" />
+<xs:element minOccurs="0" name="asunto" type="xs:string" />
+<xs:element minOccurs="0" name="emisorCertificado" type="xs:string" />
+<xs:element minOccurs="0" name="fechaFirma" type="xs:dateTime" />
+<xs:element minOccurs="0" name="idVersionPoliticaFirma" type="xs:string" />
+<xs:element minOccurs="0" name="nombreCompletoFirmante" type="xs:string" />
+<xs:element minOccurs="0" name="numeroSerie" type="xs:string" />
+<xs:element minOccurs="0" name="rolFirmante" type="xs:string" />
+<xs:element minOccurs="0" name="tipoFirmaOriginal" type="tns:tipoFirmaOriginal" />
+<xs:element name="valida" type="xs:boolean" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniFirma">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="contenidoFirma" type="tns:eniContenidoFirma" />
+<xs:element minOccurs="0" name="ref" type="xs:string" />
+<xs:element minOccurs="0" name="tipoFirma" type="tns:eniEnumTipoFirma" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniContenidoFirma">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="csv" type="tns:eniContenidoFirmaCSV" />
+<xs:element minOccurs="0" name="firmaConCertificado" type="tns:eniFirmaConCertificado" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniContenidoFirmaCSV">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element minOccurs="0" name="regulacionGeneracionCSV" type="xs:string" />
+<xs:element minOccurs="0" name="valorCSV" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="eniFirmaConCertificado">
+<xs:complexContent>
+<xs:extension base="tns:eniBaseVO">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="firmaBase64" nillable="true" type="xs:byte" />
+<xs:element minOccurs="0" name="referenciaFirma" type="xs:anyType" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="generarCopiaTemporalResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaAutenticaDigitalizacion">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWSParam" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaAutenticaDigitalizacionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWSResponse" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaAutentica">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWSParam" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaAutenticaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWSResponse" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="obtenerCopiaTemporal">
+<xs:sequence>
+<xs:element minOccurs="0" name="csv" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="obtenerCopiaTemporalResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaSimpleTemporal">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaSimpleTemporalResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaCompulsaTemporal">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaCompulsaTemporalResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaTemporalDigitalizacion">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="generarCopiaTemporalDigitalizacionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="obtenerCopiaAutentica">
+<xs:sequence>
+<xs:element minOccurs="0" name="csv" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="obtenerCopiaAutenticaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="conformarCopiaAutentica">
+<xs:sequence>
+<xs:element minOccurs="0" name="csv" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="conformarCopiaAutenticaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="DocumentoElectronicoWS" type="tns:documentoElectronico" />
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="eniEnumEstadoElaboracion">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ESTADO_ELABORACION_ORIGINAL" />
+<xs:enumeration value="ESTADO_ELABORACION_COPIA_AUTENTICA_CAMBIO_FORMATO" />
+<xs:enumeration value="ESTADO_ELABORACION_COPIA_AUTENTICA_DOCUMENTO_PAPEL" />
+<xs:enumeration value="ESTADO_ELABORACION_COPIA_PARCIAL_AUTENTICA" />
+<xs:enumeration value="ESTADO_ELABORACION_OTROS" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="eniEnumOrigenCreacion">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ORIGEN_CREACION_CIUDADANO" />
+<xs:enumeration value="ORIGEN_CREACION_ADMINISTRACION" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="eniEnumTipoDocumental">
+<xs:restriction base="xs:string">
+<xs:enumeration value="TIPO_DOCUMENTAL_RESOLUCION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_ACUERDO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_CONTRATO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_CONVENIO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_DECLARACION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_COMUNICACION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_NOTIFICACION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_PUBLICACION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_ACUSE_RECIBO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_ACTA" />
+<xs:enumeration value="TIPO_DOCUMENTAL_CERTIFICADO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_DILIGENCIA" />
+<xs:enumeration value="TIPO_DOCUMENTAL_INFORME" />
+<xs:enumeration value="TIPO_DOCUMENTAL_SOLICITUD" />
+<xs:enumeration value="TIPO_DOCUMENTAL_DENUNCUA" />
+<xs:enumeration value="TIPO_DOCUMENTAL_ALEGACION" />
+<xs:enumeration value="TIPO_DOCUMENTAL_RECURSOS" />
+<xs:enumeration value="TIPO_DOCUMENTAL_COMUNICACION_CUIDADANO" />
+<xs:enumeration value="TIPO_DOCUMENTAL_FACTURA" />
+<xs:enumeration value="TIPO_DOCUMENTAL_OTROS_INCAUTADOS" />
+<xs:enumeration value="TIPO_DOCUMENTAL_OTROS" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="tipoFirmaOriginal">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SIN_FIRMA" />
+<xs:enumeration value="XADESDetached" />
+<xs:enumeration value="XADESEnveloped" />
+<xs:enumeration value="CADESDetached" />
+<xs:enumeration value="CADESAttached" />
+<xs:enumeration value="PADES" />
+<xs:enumeration value="CMSPKCS_7" />
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="eniEnumTipoFirma">
+<xs:restriction base="xs:string">
+<xs:enumeration value="TIPO_FIRMA_CSV" />
+<xs:enumeration value="TIPO_FIRMA_XADES_INTERNALLY_DETACHED_SIGNATURE" />
+<xs:enumeration value="TIPO_FIRMA_XADES_ENVELOPED_SIGNATURE" />
+<xs:enumeration value="TIPO_FIRMA_CADES_DETACHED_EXPLICIT_SIGNATURE" />
+<xs:enumeration value="TIPO_FIRMA_CADES_ATTACHED_IMPLICIT_SIGNATURE" />
+<xs:enumeration value="TIPO_FIRMA_PADES" />
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="generarCopiaTemporalDigitalizacionResponse">
+    <wsdl:part element="tns:generarCopiaTemporalDigitalizacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaTemporalResponse">
+    <wsdl:part element="tns:generarCopiaTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaAutenticaDigitalizacion">
+    <wsdl:part element="tns:generarCopiaAutenticaDigitalizacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="conformarCopiaAutentica">
+    <wsdl:part element="tns:conformarCopiaAutentica" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerCopiaAutentica">
+    <wsdl:part element="tns:obtenerCopiaAutentica" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="conformarCopiaAutenticaResponse">
+    <wsdl:part element="tns:conformarCopiaAutenticaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerCopiaAutenticaResponse">
+    <wsdl:part element="tns:obtenerCopiaAutenticaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaAutenticaResponse">
+    <wsdl:part element="tns:generarCopiaAutenticaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaAutenticaDigitalizacionResponse">
+    <wsdl:part element="tns:generarCopiaAutenticaDigitalizacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaSimpleTemporal">
+    <wsdl:part element="tns:generarCopiaSimpleTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaSimpleTemporalResponse">
+    <wsdl:part element="tns:generarCopiaSimpleTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaCompulsaTemporal">
+    <wsdl:part element="tns:generarCopiaCompulsaTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaAutentica">
+    <wsdl:part element="tns:generarCopiaAutentica" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaTemporal">
+    <wsdl:part element="tns:generarCopiaTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaTemporalDigitalizacion">
+    <wsdl:part element="tns:generarCopiaTemporalDigitalizacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerCopiaTemporalResponse">
+    <wsdl:part element="tns:obtenerCopiaTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="obtenerCopiaTemporal">
+    <wsdl:part element="tns:obtenerCopiaTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarCopiaCompulsaTemporalResponse">
+    <wsdl:part element="tns:generarCopiaCompulsaTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CopiaAutenticaWSService">
+    <wsdl:operation name="generarCopiaTemporal">
+      <wsdl:input message="tns:generarCopiaTemporal" name="generarCopiaTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaTemporalResponse" name="generarCopiaTemporalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaAutenticaDigitalizacion">
+      <wsdl:input message="tns:generarCopiaAutenticaDigitalizacion" name="generarCopiaAutenticaDigitalizacion">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaAutenticaDigitalizacionResponse" name="generarCopiaAutenticaDigitalizacionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaAutentica">
+      <wsdl:input message="tns:generarCopiaAutentica" name="generarCopiaAutentica">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaAutenticaResponse" name="generarCopiaAutenticaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerCopiaTemporal">
+      <wsdl:input message="tns:obtenerCopiaTemporal" name="obtenerCopiaTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:obtenerCopiaTemporalResponse" name="obtenerCopiaTemporalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaSimpleTemporal">
+      <wsdl:input message="tns:generarCopiaSimpleTemporal" name="generarCopiaSimpleTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaSimpleTemporalResponse" name="generarCopiaSimpleTemporalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaCompulsaTemporal">
+      <wsdl:input message="tns:generarCopiaCompulsaTemporal" name="generarCopiaCompulsaTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaCompulsaTemporalResponse" name="generarCopiaCompulsaTemporalResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaTemporalDigitalizacion">
+      <wsdl:input message="tns:generarCopiaTemporalDigitalizacion" name="generarCopiaTemporalDigitalizacion">
+    </wsdl:input>
+      <wsdl:output message="tns:generarCopiaTemporalDigitalizacionResponse" name="generarCopiaTemporalDigitalizacionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerCopiaAutentica">
+      <wsdl:input message="tns:obtenerCopiaAutentica" name="obtenerCopiaAutentica">
+    </wsdl:input>
+      <wsdl:output message="tns:obtenerCopiaAutenticaResponse" name="obtenerCopiaAutenticaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="conformarCopiaAutentica">
+      <wsdl:input message="tns:conformarCopiaAutentica" name="conformarCopiaAutentica">
+    </wsdl:input>
+      <wsdl:output message="tns:conformarCopiaAutenticaResponse" name="conformarCopiaAutenticaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CopiaAutenticaWSServiceServiceSoapBinding" type="tns:CopiaAutenticaWSService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="generarCopiaTemporal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaTemporal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaTemporalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaAutenticaDigitalizacion">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaAutenticaDigitalizacion">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaAutenticaDigitalizacionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaAutentica">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaAutentica">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaAutenticaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerCopiaTemporal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="obtenerCopiaTemporal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="obtenerCopiaTemporalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaCompulsaTemporal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaCompulsaTemporal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaCompulsaTemporalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaSimpleTemporal">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaSimpleTemporal">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaSimpleTemporalResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarCopiaTemporalDigitalizacion">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="generarCopiaTemporalDigitalizacion">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generarCopiaTemporalDigitalizacionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerCopiaAutentica">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="obtenerCopiaAutentica">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="obtenerCopiaAutenticaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="conformarCopiaAutentica">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="conformarCopiaAutentica">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="conformarCopiaAutenticaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CopiaAutenticaWSServiceService">
+    <wsdl:port binding="tns:CopiaAutenticaWSServiceServiceSoapBinding" name="CopiaAutenticaWSServicePort">
+      <soap:address location="http://localhost:8080/digitalfront/ws/ServicioCopiaAutentica" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

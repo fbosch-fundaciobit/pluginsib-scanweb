@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
+  <artifactId>pluginsib-scanweb</artifactId>
+  <version>3.0.0</version>
+  <packaging>pom</packaging>
+  <name>PluginsIB - Scan Web Plugins</name>
+  <properties>
+    <documentcustody.api.version>3.0.0</documentcustody.api.version>
+    <scanweb.api.version>3.0.0</scanweb.api.version>
+  </properties>
+  <modules>
+    <module>api</module>
+    <module>dynamicwebtwain</module>
+    <module>iecisascanweb</module>
+    <module>caib-scanweb-plugin</module>
+    <module>scanweb-tester</module>
+    <!-- API 2.0.3        -->
+    <!--<module>api2</module>
+    <module>iecisa2-scanweb-plugin</module>
+    <module>dynamicwebtwain2</module>
+    <module>mmscomputing</module>-->
+    </modules>
+    <dependencies>
+      <dependency>
+        <groupId>org.fundaciobit.pluginsib.core</groupId>
+        <artifactId>pluginsib-core</artifactId>
+        <version>2.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.8.2</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.14</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </project>
