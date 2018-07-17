@@ -1,7 +1,0 @@
-
-test_urlbase=http://localhost:8080/digitalfront/ws/
-
-test_usr=app_user
-test_pwd=app_pwd
-
-test_entidad_codigo=FUNDACIO_BIT
