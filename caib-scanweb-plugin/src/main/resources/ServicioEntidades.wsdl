@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="EntidadesWSServiceImplService" targetNamespace="http://impl.service.ws.digital.caib.es/" xmlns:ns1="http://service.ws.digital.caib.es/" xmlns:ns2="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.service.ws.digital.caib.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="./ServicioEntidades.xml" namespace="http://service.ws.digital.caib.es/">
+    </wsdl:import>
+  <wsdl:binding name="EntidadesWSServiceImplServiceSoapBinding" type="ns1:EntidadesWSService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="deleteLogoEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteLogoEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteLogoEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEntidadDynamic">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getEntidadDynamic">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEntidadDynamicResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEntidadAll">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteEntidadAll">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteEntidadAllResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updatePlantillaEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updatePlantillaEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updatePlantillaEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="saveEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="saveEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveEntidadAll">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="saveEntidadAll">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="saveEntidadAllResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTodasEntidades">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getTodasEntidades">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTodasEntidadesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePlantillaEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deletePlantillaEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deletePlantillaEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateLogoEntidad">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateLogoEntidad">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateLogoEntidadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EntidadesWSServiceImplService">
+    <wsdl:port binding="tns:EntidadesWSServiceImplServiceSoapBinding" name="EntidadesWSServiceImplPort">
+      <soap:address location="https://proves.caib.es/digital/ws/ServicioEntidades" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="CaratulasWSServiceService" targetNamespace="http://service.ws.digital.caib.es/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.ws.digital.caib.es/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://service.ws.digital.caib.es/" version="1.0" xmlns:tns="http://service.ws.digital.caib.es/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="caratulaReturnInfo" type="tns:caratulaReturnInfo" />
+<xs:element name="getCaratula" type="tns:getCaratula" />
+<xs:element name="getCaratulaResponse" type="tns:getCaratulaResponse" />
+<xs:element name="returnInfo" type="tns:returnInfo" />
+<xs:complexType name="getCaratula">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:coverParams" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="coverParams">
+<xs:sequence>
+<xs:element name="coverPDFValues">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="entry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" name="entityID" type="xs:int" />
+<xs:element name="included" type="xs:boolean" />
+<xs:element minOccurs="0" name="metadataURL" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="metadatos" nillable="true" type="tns:metaDato" />
+<xs:element minOccurs="0" name="numPages" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="metaDato">
+<xs:sequence>
+<xs:element minOccurs="0" name="clave" type="xs:string" />
+<xs:element minOccurs="0" name="valor" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getCaratulaResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:caratulaReturnInfo" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="caratulaReturnInfo">
+<xs:complexContent>
+<xs:extension base="tns:returnInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="caratula" type="xs:base64Binary" />
+<xs:element minOccurs="0" name="csv" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="returnInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="wsState" type="tns:wsState" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="wsState">
+<xs:sequence>
+<xs:element minOccurs="0" name="code" type="xs:string" />
+<xs:element minOccurs="0" name="errorMsg" type="xs:string" />
+<xs:element name="ok" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getCaratulaResponse">
+    <wsdl:part element="tns:getCaratulaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCaratula">
+    <wsdl:part element="tns:getCaratula" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CaratulasWSService">
+    <wsdl:operation name="getCaratula">
+      <wsdl:input message="tns:getCaratula" name="getCaratula">
+    </wsdl:input>
+      <wsdl:output message="tns:getCaratulaResponse" name="getCaratulaResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CaratulasWSServiceServiceSoapBinding" type="tns:CaratulasWSService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getCaratula">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getCaratula">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getCaratulaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CaratulasWSServiceService">
+    <wsdl:port binding="tns:CaratulasWSServiceServiceSoapBinding" name="CaratulasWSServicePort">
+      <soap:address location="http://spreapplin6.caib.es:48080/digital/ws/ServicioCaratulas" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
