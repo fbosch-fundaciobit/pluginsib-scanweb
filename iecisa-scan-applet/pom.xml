@@ -1,0 +1,313 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+         <groupId>org.fundaciobit.plugins</groupId>
+         <artifactId>plugin-scanweb-iecisascanweb</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <name>FundacioBit Plugins - Scan Web - IECISA - Applet</name>
+    <groupId>org.fundaciobit.plugins</groupId>
+    <artifactId>plugin-scanweb-iecisascanweb-applet</artifactId>
+    <version>2.0.0</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <afirma.keytool.keystore>afirma.keystore</afirma.keytool.keystore>
+        <afirma.keytool.alias>codesign</afirma.keytool.alias>
+        <afirma.keytool.password>afirma</afirma.keytool.password>
+    </properties>
+	<dependencies>
+        <dependency>
+            <groupId>com.sun.media</groupId>
+            <artifactId>jai_codec</artifactId>
+            <version>1.1.2_01</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.media</groupId>
+            <artifactId>jai_core</artifactId>
+            <version>1.1.2_01</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+            <exclusions>
+                <exclusion>
+                      <groupId>bouncycastle</groupId>
+                      <artifactId>bctsp-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                      <groupId>bouncycastle</groupId>
+                    <artifactId>bcprov-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                      <groupId>bouncycastle</groupId>
+                    <artifactId>bcmail-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.runtime</groupId>
+            <artifactId>java-plugin</artifactId>
+            <version>1.6</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/lib/plugin.jar</systemPath>
+        </dependency>
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>4.11</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <fork>true</fork>
+                    <!--
+                    <executable>${JAVA_1_6_CAIB}/bin/javac</executable>
+                    -->
+                    <compilerVersion>1.6</compilerVersion>
+                    <meminitial>256m</meminitial>
+                    <maxmem>1024m</maxmem>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
+                <executions>
+                    <execution>
+                        <id>jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>
+                                    jar-with-dependencies
+                                </descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifestEntries>
+                                    <Trusted-Library>true</Trusted-Library>
+                                    <Permissions>all-permissions</Permissions>
+                                    <Codebase>*</Codebase>
+                                    <Sealed>true</Sealed>
+                                  <!--  Necesario para que no falle los Readers de JAI_IMAGEIO -->
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    <mainClass>es.ieci.tecdoc.fwktd.applets.scan.applet.IdocFrame</mainClass>
+                                </manifestEntries>
+                            </archive>
+                            <!--
+                            <finalName>${project.build.finalName}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>                      
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                  <execution>
+                    <goals>
+                      <goal>sign</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <jarPath>${project.build.directory}/${project.build.FinalName}-${project.packaging}-with-dependencies.${project.packaging}</jarPath>
+                  <keystore>${afirma.keytool.keystore}</keystore>
+                  <alias>${afirma.keytool.alias}</alias>
+                  <storepass>${afirma.keytool.password}</storepass>
+                  <signedjar>target/${project.build.finalName}-signed.jar</signedjar>
+                  <verify>true</verify>
+                  <!--
+                  <inputDirectory>${basedir}\web</inputDirectory>
+                  <outputDirectory>${basedir}\web</outputDirectory>
+                  -->
+                  <archive>
+                        <manifestEntries>
+                          <Implementation-Title>org.fundaciobit.scanweb</Implementation-Title>
+                          <Implementation-Version>${project.version}</Implementation-Version>
+                          <Specification-Vendor>IECISA</Specification-Vendor>
+                          <Application-Name>IECISAScanApplet</Application-Name>
+                          <Caller-Allowable-Codebase>*</Caller-Allowable-Codebase>
+                          <Implementation-Vendor>IECISA</Implementation-Vendor>
+                          <Application-Library-Allowable-Codebase>*</Application-Library-Allowable-Codebase>
+                          <Name>es.ieci.tecdoc.fwktd.applets.scan.applet</Name>
+                          <Permissions>all-permissions</Permissions>
+                          <Specification-Title>IECISA Scan Applet</Specification-Title>
+                          <Specification-Version>${project.version}</Specification-Version>
+                          <Main-Class>es.ieci.tecdoc.fwktd.applets.scan.applet.IdocFrame</Main-Class>
+                          <Codebase>*</Codebase>					  
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-install-plugin</artifactId>
+              <version>2.4</version>
+              <executions>
+                <execution>
+                  <id>installsigned</id>
+                  <phase>install</phase>
+                  <goals>
+                    <goal>install-file</goal>
+                  </goals>
+                  <configuration>
+                    <file>target/${project.build.finalName}-signed.jar</file>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>${project.artifactId}-signed</artifactId>
+                    <version>${project.version}</version>
+                    <packaging>jar</packaging>
+                  </configuration>
+                </execution>				
+              </executions>
+            </plugin>         
+<!--             <plugin> -->
+<!--                 <groupId>org.codehaus.mojo</groupId> -->
+<!--                 <artifactId>keytool-maven-plugin</artifactId> -->
+<!--                 <version>1.0</version> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <phase>generate-resources</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>clean</goal> -->
+<!--                             <goal>genkey</goal> -->
+<!--                         </goals> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!--                 <configuration> -->
+<!--                     <keystore>${basedir}/target/keystore</keystore> -->
+<!--                     <dname>cn=gesdoc, ou=ieci</dname> -->
+<!--                     <alias>scanApplet</alias> -->
+<!--                     <keypass>password</keypass> -->
+<!--                     <storepass>password</storepass> -->
+<!--                     <validity>10000</validity> -->
+<!--                 </configuration> -->
+<!--             </plugin> -->
+<!--             <plugin> -->
+<!--                 <groupId>org.apache.maven.plugins</groupId> -->
+<!--                 <artifactId>maven-jar-plugin</artifactId> -->
+<!--                 <configuration> -->
+<!--                     <archive> -->
+<!--                         <manifestEntries> -->
+<!--                             <Trusted-Library>true</Trusted-Library> -->
+<!--                             <Permissions>all-permissions</Permissions> -->
+<!--                             <Codebase>*</Codebase> -->
+<!--                             <Sealed>true</Sealed> -->
+<!--                         </manifestEntries> -->
+<!--                     </archive> -->
+<!--                     <keystore>${basedir}/target/keystore</keystore> -->
+<!--                     <alias>scanApplet</alias> -->
+<!--                     <storepass>password</storepass> -->
+<!--                     <keypass>password</keypass> -->
+<!--                     <excludes> -->
+<!--                         <exclude>**/images/*.*</exclude> -->
+<!--                         <exclude>custom-fo.xsl</exclude> -->
+<!--                     </excludes> -->
+<!--                 </configuration> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <goals> -->
+<!--                             <goal>sign</goal> -->
+<!--                             <goal>sign-verify</goal> -->
+<!--                         </goals> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!--             </plugin> -->
+
+<!--
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                              <echo>Eliminamos fwktd-scan-applet de ../es_caib_digital_webapp/src/main/webapp/applets</echo>  
+                                <delete>
+                                    <fileset dir="../es_caib_digital_webapp/src/main/webapp/applets">
+                                        <include name="fwktd-scan-applet*.jar" />
+                                    </fileset>
+                                </delete>
+
+                              <echo>Copiamos fwktd-scan-applet en ../es_caib_digital_webapp/src/main/webapp/applets</echo>
+                                <copy file="${basedir}/target/${project.artifactId}-${project.version}.jar" todir="../es_caib_digital_webapp/src/main/webapp/applets/" overwrite="true"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+    <repositories>
+        <!--<repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>itagelib-spring-maven-repos</id>
+            <url>http://registre.sourceforge.net/maven/itaglib-spring</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>genapp-maven-repos</id>
+            <url>http://genapp.sourceforge.net/maven</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>maven-nuxeo</id>
+            <url>https://maven.nuxeo.org/nexus/content/groups/public</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+	<repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>-->
+<!--        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>  -->
+    </repositories>
+</project>
