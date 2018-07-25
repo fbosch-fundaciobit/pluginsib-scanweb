@@ -153,7 +153,7 @@ public class CAIBScanWebPlugin extends AbstractScanWebPlugin {
   }
 
   protected static final Set<String> SUPPORTED_FLAG = Collections
-      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_SIGNED, FLAG_CSV)));
+      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_CSV)));
 
   protected static final List<Set<String>> SUPPORTED_FLAGS = Collections
       .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG)));

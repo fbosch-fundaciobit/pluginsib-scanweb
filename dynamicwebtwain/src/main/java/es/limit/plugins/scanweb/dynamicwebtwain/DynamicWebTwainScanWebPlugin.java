@@ -44,6 +44,7 @@ import org.fundaciobit.plugins.scanweb.api.ScanWebStatus;
 import org.fundaciobit.plugins.scanweb.api.ScannedDocument;
 import org.fundaciobit.plugins.scanweb.api.ScannedPlainFile;
 import org.fundaciobit.plugins.scanweb.api.ScannedSignedFile;
+/*XXX
 import org.fundaciobit.plugins.signature.api.CommonInfoSignature;
 import org.fundaciobit.plugins.signature.api.FileInfoSignature;
 import org.fundaciobit.plugins.signature.api.ITimeStampGenerator;
@@ -56,6 +57,7 @@ import org.fundaciobit.plugins.signature.api.StatusSignature;
 import org.fundaciobit.plugins.signature.api.StatusSignaturesSet;
 import org.fundaciobit.plugins.signatureserver.miniappletinserver.MiniAppletInServerSignatureServerPlugin;
 import org.fundaciobit.plugins.signatureserver.miniappletinserver.MiniAppletInServerSignatureServerPlugin.InfoCertificate;
+*/
 import org.fundaciobit.plugins.utils.Metadata;
 import org.fundaciobit.plugins.utils.PublicCertificatePrivateKeyPair;
 
@@ -135,11 +137,11 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
   }
 	
 
-  public boolean forceSign() {
+  /*public boolean forceSign() {
     return "true".equals(getProperty(PROPERTY_BASE + "forcesign"));
-  }
+  }*/
   
-  public String getKeyStore() throws Exception {
+ /* public String getKeyStore() throws Exception {
     return getPropertyRequired(PROPERTY_BASE + "sign.keystore");
   }
   
@@ -157,7 +159,7 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
   
   public String getAsunto() throws Exception {
     return getPropertyRequired(PROPERTY_BASE + "sign.asunto");
-  }
+  }*/
 	
 
 	/**
@@ -211,19 +213,16 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
   protected static final Set<String> SUPPORTED_FLAG_1 = Collections
       .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_NON_SIGNED)));
   
-  protected static final Set<String> SUPPORTED_FLAG_2 = Collections
-      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_SIGNED)));
+  /*protected static final Set<String> SUPPORTED_FLAG_2 = Collections
+      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_SIGNED)));*/
 
   protected static final List<Set<String>> SUPPORTED_FLAGS = Collections
-      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_1, SUPPORTED_FLAG_2)));
-  
-  protected static final List<Set<String>> SUPPORTED_FLAGS_ONLYSIGN = Collections
-      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_2)));
+      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_1)));
 
   @Override
   public List<Set<String>> getSupportedFlagsByScanType(String scanType) {
     if (SCANTYPE_PDF.equals(scanType)) {
-      return forceSign()? SUPPORTED_FLAGS_ONLYSIGN : SUPPORTED_FLAGS;
+      return /*forceSign()? SUPPORTED_FLAGS_ONLYSIGN :*/ SUPPORTED_FLAGS;
     }
     return null;
   }
@@ -871,11 +870,11 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
     
     ScannedSignedFile scannedSignedFile = null;
     
-    if (forceSign() || fullInfo.getFlags().contains(FLAG_SIGNED)) {
+    if (/*forceSign() ||*/fullInfo.getFlags().contains(FLAG_SIGNED)) {
       
       
       try {
-        scannedSignedFile = signFile(fullInfo, languageUI, singleScanFile);
+        //scannedSignedFile = signFile(fullInfo, languageUI, singleScanFile);
         
         singleScanFile = null;
         
@@ -960,6 +959,10 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
   public static final  String username = "scanweb"; // configuracio
   
   
+  
+  
+ /*XXX
+  
   public MiniAppletInServerSignatureServerPlugin plugin = null;
   
   
@@ -1008,7 +1011,6 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
      //reader.close();
       sourceOS.flush();
       sourceOS.close();
-      */
       
       
       // 6.- Afegir propietats inicials
@@ -1131,7 +1133,7 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
         }
       }
     
-  }
+  }*/
   
   
   protected void retornarRecursDesdeDirectori(String absolutePluginRequestPath,
@@ -1208,18 +1210,18 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
     }
   }
   
-  private class DigitalInfoCertificate implements InfoCertificate {
+  /*private class DigitalInfoCertificate implements InfoCertificate {
     
     final File f;
     
     final PublicCertificatePrivateKeyPair publicCertificatePrivateKeyPair;
-
+*/
     
     /**
      * @param f
      * @param publicCertificatePrivateKeyPair
      */
-    public DigitalInfoCertificate(File f,
+   /* public DigitalInfoCertificate(File f,
         PublicCertificatePrivateKeyPair publicCertificatePrivateKeyPair) {
       super();
       this.f = f;
@@ -1236,7 +1238,7 @@ public class DynamicWebTwainScanWebPlugin extends AbstractScanWebPlugin implemen
       return this.publicCertificatePrivateKeyPair;
     }
     
-  }
+  }*/
   
 
   

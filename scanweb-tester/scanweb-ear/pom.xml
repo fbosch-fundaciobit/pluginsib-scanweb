@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
-  <artifactId>plugin-scanweb-tester-ear</artifactId>
+  <artifactId>pluginsib-scanweb-tester-ear</artifactId>
   <packaging>ear</packaging>
   <name>PluginsIB - Scan Web - Tester - EAR</name>
   <parent>
@@ -13,14 +13,14 @@
   <dependencies>
     <!-- Internes -->
     <dependency>
-      <artifactId>plugin-scanweb-tester-ejb</artifactId>
-      <groupId>org.fundaciobit.plugins</groupId>
+      <artifactId>pluginsib-scanweb-tester-ejb</artifactId>
+      <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
       <version>${project.version}</version>
       <type>ejb</type>
     </dependency>
     <dependency>
-      <artifactId>plugin-scanweb-tester-war</artifactId>
-      <groupId>org.fundaciobit.plugins</groupId>
+      <artifactId>pluginsib-scanweb-tester-war</artifactId>
+      <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
       <version>${project.version}</version>
       <type>war</type>
     </dependency>
@@ -71,12 +71,12 @@
           </jboss>
           <modules>
             <ejbModule>
-              <artifactId>plugin-scanweb-tester-ejb</artifactId>
-              <groupId>org.fundaciobit.plugins</groupId>
+              <artifactId>pluginsib-scanweb-tester-ejb</artifactId>
+              <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
             </ejbModule>
             <webModule>
-              <artifactId>plugin-scanweb-tester-war</artifactId>
-              <groupId>org.fundaciobit.plugins</groupId>
+              <artifactId>pluginsib-scanweb-tester-war</artifactId>
+              <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
               <contextRoot>scanweb</contextRoot>
             </webModule>
           </modules>

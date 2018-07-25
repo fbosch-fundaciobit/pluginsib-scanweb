@@ -35,7 +35,7 @@ import org.fundaciobit.plugins.scanweb.api.ScanWebStatus;
 import org.fundaciobit.plugins.scanweb.api.ScannedPlainFile;
 import org.fundaciobit.plugins.scanweb.api.ScannedDocument;
 import org.fundaciobit.plugins.scanweb.api.ScannedSignedFile;
-import org.fundaciobit.plugins.signature.api.CommonInfoSignature;
+/*import org.fundaciobit.plugins.signature.api.CommonInfoSignature;
 import org.fundaciobit.plugins.signature.api.FileInfoSignature;
 import org.fundaciobit.plugins.signature.api.ITimeStampGenerator;
 import org.fundaciobit.plugins.signature.api.PdfVisibleSignature;
@@ -47,6 +47,7 @@ import org.fundaciobit.plugins.signature.api.StatusSignature;
 import org.fundaciobit.plugins.signature.api.StatusSignaturesSet;
 import org.fundaciobit.plugins.signatureserver.miniappletinserver.MiniAppletInServerSignatureServerPlugin;
 import org.fundaciobit.plugins.signatureserver.miniappletinserver.MiniAppletInServerSignatureServerPlugin.InfoCertificate;
+*/
 import org.fundaciobit.plugins.utils.Metadata;
 import org.fundaciobit.plugins.utils.PublicCertificatePrivateKeyPair;
 
@@ -95,15 +96,15 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
     return "true".equals(getProperty(PROPERTY_BASE + "forcejnlp"));
   }
   
-  public boolean forceSign() {
+  /*public boolean forceSign() {
     return "true".equals(getProperty(PROPERTY_BASE + "forcesign"));
-  }
+  }*/
   
   public boolean closeWindowWhenFinish() {
     return "true".equals(getProperty(PROPERTY_BASE + "closewindowwhenfinish"));
   }
   
-  public String getKeyStore() throws Exception {
+  /*public String getKeyStore() throws Exception {
     return getPropertyRequired(PROPERTY_BASE + "sign.keystore");
   }
   
@@ -121,7 +122,7 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
   
   public String getAsunto() throws Exception {
     return getPropertyRequired(PROPERTY_BASE + "sign.asunto");
-  }
+  }*/
 
   @Override
   public String getName(Locale locale) {
@@ -157,19 +158,19 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
   protected static final Set<String> SUPPORTED_FLAG_1 = Collections
       .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_NON_SIGNED)));
   
-  protected static final Set<String> SUPPORTED_FLAG_2 = Collections
-      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_SIGNED)));
+ /* protected static final Set<String> SUPPORTED_FLAG_2 = Collections
+      .unmodifiableSet(new HashSet<String>(Arrays.asList(FLAG_SIGNED)));*/
 
   protected static final List<Set<String>> SUPPORTED_FLAGS = Collections
-      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_1, SUPPORTED_FLAG_2)));
+      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_1)));
   
-  protected static final List<Set<String>> SUPPORTED_FLAGS_ONLYSIGN = Collections
-      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_2)));
+  /*protected static final List<Set<String>> SUPPORTED_FLAGS_ONLYSIGN = Collections
+      .unmodifiableList(new ArrayList<Set<String>>(Arrays.asList(SUPPORTED_FLAG_2)));*/
 
   @Override
   public List<Set<String>> getSupportedFlagsByScanType(String scanType) {
     if (SCANTYPE_PDF.equals(scanType)) {
-      return forceSign()? SUPPORTED_FLAGS_ONLYSIGN : SUPPORTED_FLAGS;
+      return /*forceSign()? SUPPORTED_FLAGS_ONLYSIGN :*/ SUPPORTED_FLAGS;
     }
     return null;
   }
@@ -725,9 +726,8 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
     
     ScannedSignedFile scannedSignedFile = null;
     
-    if (forceSign() || fullInfo.getFlags().contains(FLAG_SIGNED)) {
-      
-      
+    /*if (/*forceSign() || fullInfo.getFlags().contains(FLAG_SIGNED)) {
+          
       try {
         scannedSignedFile = signFile(fullInfo, languageUI, singleScanFile);
         
@@ -739,7 +739,7 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
         return;
       }
       
-    }
+    }*/
 
     
     final Date date = new Date(System.currentTimeMillis());
@@ -767,7 +767,7 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
 
   public static final  String username = "scanweb"; // configuracio
   
-  
+/*XXX  
   public MiniAppletInServerSignatureServerPlugin plugin = null;
   
   
@@ -803,7 +803,7 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
       boolean userRequiresTimeStamp = false;
       final String signID = String.valueOf(System.currentTimeMillis());
       
-      
+      */
       
       
 //      PdfReader reader = new PdfReader(new ByteArrayInputStream(singleScanFile.getData()));
@@ -818,7 +818,7 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
       sourceOS.close();
       */
       
-      
+      /*
       // 6.- Afegir propietats inicials
       InputStream input3 = new ByteArrayInputStream(singleScanFile.getData()); //output2.toByteArray());
       
@@ -939,22 +939,23 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
         }
       }
     
-  }
+  }*/
   
   
-  
+  /*
   private class DigitalInfoCertificate implements InfoCertificate {
     
     final File f;
     
     final PublicCertificatePrivateKeyPair publicCertificatePrivateKeyPair;
 
-    
+    */
     /**
      * @param f
      * @param publicCertificatePrivateKeyPair
      */
-    public DigitalInfoCertificate(File f,
+  /*  
+  public DigitalInfoCertificate(File f,
         PublicCertificatePrivateKeyPair publicCertificatePrivateKeyPair) {
       super();
       this.f = f;
@@ -973,5 +974,5 @@ public class IECISAScanWebPlugin extends AbstractScanWebPlugin {
     
   }
   
-
+*/
 }

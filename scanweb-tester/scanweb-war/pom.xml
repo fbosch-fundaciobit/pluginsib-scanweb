@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
-  <artifactId>plugin-scanweb-tester-war</artifactId>
+  <artifactId>pluginsib-scanweb-tester-war</artifactId>
   <packaging>war</packaging>
   <name>PluginsIB - Scan Web - Tester - WAR</name>
   <parent>
@@ -16,9 +16,9 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-      <artifactId>plugin-scanweb-tester-ejb</artifactId>
-      <groupId>org.fundaciobit.plugins</groupId>
-      <version>1.0.0</version>
+      <artifactId>pluginsib-scanweb-tester-ejb</artifactId>
+      <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
+      <version>2.0.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -29,8 +29,8 @@
     </dependency>
     <!-- ================  PLUGINS ======================== -->
     <dependency>
-      <groupId>org.fundaciobit.plugins</groupId>
-      <artifactId>plugin-scanweb-api</artifactId>
+      <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
+      <artifactId>pluginsib-scanweb-api</artifactId>
       <version>${scanweb.api.version}</version>
       <scope>provided</scope>
     </dependency>

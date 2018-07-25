@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
-      <artifactId>plugin-documentcustody-api</artifactId>
+      <artifactId>pluginsib-documentcustody-api</artifactId>
       <version>${documentcustody.api.version}</version>
     </dependency>
     <dependency>

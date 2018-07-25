@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>PluginsIB - Scan Web Plugins</name>
   <properties>
-    <documentcustody.api.version>3.0.0</documentcustody.api.version>
+    <documentcustody.api.version>4.0.0</documentcustody.api.version>
     <scanweb.api.version>3.0.0</scanweb.api.version>
   </properties>
   <modules>
@@ -16,11 +16,6 @@
     <module>iecisa-scanweb-plugin</module>
     <module>caib-scanweb-plugin</module>
     <module>scanweb-tester</module>
-    <!-- API 2.0.3        -->
-    <!--<module>api2</module>
-    <module>iecisa2-scanweb-plugin</module>
-    <module>dynamicwebtwain2</module>
-    <module>mmscomputing</module>-->
     </modules>
     <dependencies>
       <dependency>
@@ -60,7 +55,7 @@
       <repository>
         <id>github-governib-maven-repos</id>
         <name>GitHub GovernIB Maven Repository</name>
-        <url>http://GovernIB.github.io/maven/maven/</url>
+        <url>https://governib.github.io/maven/maven/</url>
       </repository>
     </repositories>
     <build>
