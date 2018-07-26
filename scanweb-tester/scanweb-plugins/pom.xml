@@ -6,22 +6,16 @@
   <packaging>ear</packaging>
   <name>PluginsIB - Scan Web - Tester - Plugins</name>
   <parent>
-		<groupId>org.fundaciobit.pluginsib.scanweb</groupId>
+    <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
     <artifactId>pluginsib-scanweb-tester</artifactId>
     <version>2.0.0</version>
   </parent>
   <dependencies>
     <!--  APIs  -->
     <dependency>
-			<groupId>org.fundaciobit.pluginsib.scanweb</groupId>
-		  <artifactId>pluginsib-scanweb-api</artifactId>
-		  <version>3.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
-      <artifactId>pluginsib-scanweb-api</artifactId>
-      <version>${scanweb.api.version}</version>
+		<groupId>org.fundaciobit.pluginsib.scanweb</groupId>
+		<artifactId>pluginsib-scanweb-api</artifactId>
+		<version>3.0.0</version>
       <scope>provided</scope>
     </dependency>
     <!--  IMPLEMENTACIONS -->

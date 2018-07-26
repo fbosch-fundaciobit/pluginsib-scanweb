@@ -17,12 +17,6 @@
       <version>3.0.0</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-    <groupId>org.fundaciobit.pluginsib.scanweb</groupId>
-    <artifactId>pluginsib-scanweb-api</artifactId>
-    <version>${scanweb.api.version}</version>
-    <scope>provided</scope>
-  </dependency>
   <dependency>
     <groupId>javax.ejb</groupId>
     <artifactId>ejb-api</artifactId>

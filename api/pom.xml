@@ -15,7 +15,7 @@
     <dependency>
       <groupId>org.fundaciobit.pluginsib.documentcustody</groupId>
       <artifactId>pluginsib-documentcustody-api</artifactId>
-      <version>${documentcustody.api.version}</version>
+      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>commons-fileupload</groupId>
